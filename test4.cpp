@@ -12,7 +12,7 @@ TEST_CASE("testing ancestor", "[ancestor]") {
   }
 
 	REQUIRE_THROWS_AS(b3.ancestor(50), NoSuchElement);
-	//REQUIRE(b3.ancestor(5) == 12);
+	REQUIRE(b3.ancestor(5) == 12);
 	REQUIRE(b3.ancestor(40) == 25);
 	REQUIRE(b3.ancestor(80) == 75);
 	REQUIRE_THROWS_AS(b3.ancestor(100), NoSuchElement);
