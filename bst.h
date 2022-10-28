@@ -547,11 +547,14 @@ bool BST<T>::isFull2(Node<T>* root) const {
 // =================================================================
 template <class T>
 T BST<T>::ancestor1(Node<T>* root, T val, std::vector<T> &ancestors) const{
-  if (root == NULL)
-     return false;
+  if (root == NULL){
+		return false;
+	}
 
-  if (root->value == val)
-     return true;
+  if (root->value == val){
+		return true;
+	}
+
 
   if ( ancestor1(root->left, val, ancestors) ||
        ancestor1(root->right, val, ancestors) )
@@ -581,7 +584,7 @@ T BST<T>::ancestor(T val) const {
 	}
 	std::vector<T> ancestors;
 	ancestor1(root, val, ancestors);
-	return ancestors.back();
+	return ancestors[0];
 }
 
 #endif /* BST_H */
