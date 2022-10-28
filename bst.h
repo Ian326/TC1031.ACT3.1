@@ -286,9 +286,9 @@ public:
 	std::string postOrder() const;
 	std::string preOrder() const;
 
-	std::string byLevel() const;
+	std::string byLevel();
 	bool printLevel(Node<T>* root, int level, std::stringstream &aux);
-	std::string printAllLevels(Node<T>* root, std::stringstream &aux);
+	std::string printAllLevels(Node<T>* root);
 
 	uint leaves() const;
 	uint leaves2(Node<T>*) const;
@@ -447,13 +447,9 @@ std::string BST<T>::postOrder() const {
 // @return a string with the level traversal of the tree.
 // =================================================================
 template <class T>
-std::string BST<T>::byLevel() const {
-	std::stringstream aux;
-
-	aux << "[";
-	aux << printAllLevels(root);
-	aux << "]";
-	return aux.str();
+std::string BST<T>::byLevel() {
+	 	std::string levels = printAllLevels(root);
+		return levels;
 }
 
 template <class T>
@@ -469,20 +465,25 @@ bool BST<T>::printLevel(Node<T>* root, int level, std::stringstream &aux)
         return true;
     }
 
-    bool left = printLevel(root->left, level - 1);
-    bool right = printLevel(root->right, level - 1);
+    bool left = printLevel(root->left, level - 1, aux);
+    bool right = printLevel(root->right, level - 1, aux);
 
     return left || right;
 }
 
 // Real function to print level order traversal of a given binary tree
 template <class T>
-std::string BST<T>::printAllLevels(Node<T>* root, std::stringstream &aux)
+std::string BST<T>::printAllLevels(Node<T>* root)
 {
-    int level = 1;
-    while (printLevel(root, level)) {
-        level++;
+	std::stringstream aux;
+
+	aux << "[";
+  int level = 1;
+  while (printLevel(root, level, aux)) {
+      level++;
     }
+		aux << "]";
+		return aux.str();
 }
 
 // =================================================================
